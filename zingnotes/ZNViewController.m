@@ -10,6 +10,8 @@
 
 @interface ZNViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *notesTableView;
+
 @end
 
 @implementation ZNViewController
@@ -24,6 +26,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma TableViewDelegate and TableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;   // Placeholder, will be replaced by real count later
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell* currentCell = [tableView dequeueReusableCellWithIdentifier:@"CellForNote" forIndexPath:indexPath];
+    
+    [currentCell.textLabel setText:[NSString stringWithFormat:@"Cell# %d",indexPath.row]];
+    
+    return currentCell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // nothing at this moment
 }
 
 @end

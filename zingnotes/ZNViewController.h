@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZNViewController : UIViewController
+@interface ZNViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
