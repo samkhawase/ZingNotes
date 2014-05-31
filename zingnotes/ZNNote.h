@@ -10,7 +10,9 @@
 
 @interface ZNNote : NSObject
 
-@property (strong, nonatomic) NSString* noteId;
+- (id)initWithNoteId:(NSNumber*)noteId andNoteText:(NSString*)noteText;
+
+@property (strong, nonatomic) NSNumber* noteId;
 @property (strong, nonatomic) NSString* noteText;
 
 @end

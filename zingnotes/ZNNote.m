@@ -12,11 +12,22 @@
 
 @implementation ZNNote
 
+- (id)initWithNoteId:(NSNumber*)noteId andNoteText:(NSString*)noteText{
+    
+    self = [super init];
+    
+    self.noteId = noteId;
+    self.noteText = noteText;
+    
+    return self;
+}
+
+
 // lazy initialization
 
-- (NSString *)noteId{
+- (NSNumber *)noteId{
     if (nil == _noteId) {
-        _noteId = [[NSString alloc]init];
+        _noteId = [[NSNumber alloc]init];
     }
     return  _noteId;
 }
