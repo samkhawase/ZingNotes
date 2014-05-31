@@ -7,10 +7,13 @@
 //
 
 #import "ZNViewController.h"
+#import "ZNDataService.h"
+#import "ZNNote.h"
 
 @interface ZNViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *notesTableView;
+@property (strong, nonatomic) NSMutableArray* notesOnThisPage;
 
 @end
 
@@ -20,6 +23,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.notesOnThisPage = [[[ZNDataService sharedInstance] retriveAllNotes] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,14 +35,16 @@
 #pragma TableViewDelegate and TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;   // Placeholder, will be replaced by real count later
+    return [self.notesOnThisPage count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell* currentCell = [tableView dequeueReusableCellWithIdentifier:@"CellForNote" forIndexPath:indexPath];
     
-    [currentCell.textLabel setText:[NSString stringWithFormat:@"Cell# %d",indexPath.row]];
+    ZNNote* thisNote = [self.notesOnThisPage objectAtIndex:indexPath.row];
+    
+    [currentCell.textLabel setText:[NSString stringWithFormat:@"Note# %@",[thisNote.noteId stringValue]]];
     
     return currentCell;
     
