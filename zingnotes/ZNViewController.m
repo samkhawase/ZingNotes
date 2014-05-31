@@ -46,6 +46,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     // nothing at this moment
+    [self performSegueWithIdentifier:@"pushSegueToNoteDetails" sender:self];
 }
 
 @end

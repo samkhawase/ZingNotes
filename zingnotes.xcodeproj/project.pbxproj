@@ -21,6 +21,7 @@
 		4081B4D31939D60700C774EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4081B4B51939D60700C774EB /* UIKit.framework */; };
 		4081B4DB1939D60700C774EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4081B4D91939D60700C774EB /* InfoPlist.strings */; };
 		4081B4DD1939D60700C774EB /* zingnotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4081B4DC1939D60700C774EB /* zingnotesTests.m */; };
+		4081B4E91939DC1800C774EB /* ZNNoteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4081B4E81939DC1800C774EB /* ZNNoteDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		4081B4D81939D60700C774EB /* zingnotesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "zingnotesTests-Info.plist"; sourceTree = "<group>"; };
 		4081B4DA1939D60700C774EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4081B4DC1939D60700C774EB /* zingnotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zingnotesTests.m; sourceTree = "<group>"; };
+		4081B4E71939DC1800C774EB /* ZNNoteDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNNoteDetailsViewController.h; sourceTree = "<group>"; };
+		4081B4E81939DC1800C774EB /* ZNNoteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNNoteDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +115,10 @@
 		4081B4B71939D60700C774EB /* zingnotes */ = {
 			isa = PBXGroup;
 			children = (
+				4081B4E61939DBF900C774EB /* ViewControllers */,
 				4081B4C01939D60700C774EB /* ZNAppDelegate.h */,
 				4081B4C11939D60700C774EB /* ZNAppDelegate.m */,
 				4081B4C31939D60700C774EB /* Main.storyboard */,
-				4081B4C61939D60700C774EB /* ZNViewController.h */,
-				4081B4C71939D60700C774EB /* ZNViewController.m */,
 				4081B4C91939D60700C774EB /* Images.xcassets */,
 				4081B4B81939D60700C774EB /* Supporting Files */,
 			);
@@ -150,6 +152,17 @@
 				4081B4D91939D60700C774EB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4081B4E61939DBF900C774EB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4081B4C61939D60700C774EB /* ZNViewController.h */,
+				4081B4C71939D60700C774EB /* ZNViewController.m */,
+				4081B4E71939DC1800C774EB /* ZNNoteDetailsViewController.h */,
+				4081B4E81939DC1800C774EB /* ZNNoteDetailsViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +266,7 @@
 				4081B4C21939D60700C774EB /* ZNAppDelegate.m in Sources */,
 				4081B4BE1939D60700C774EB /* main.m in Sources */,
 				4081B4C81939D60700C774EB /* ZNViewController.m in Sources */,
+				4081B4E91939DC1800C774EB /* ZNNoteDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +471,7 @@
 				4081B4E21939D60700C774EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4081B4E31939D60700C774EB /* Build configuration list for PBXNativeTarget "zingnotesTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +480,7 @@
 				4081B4E51939D60700C774EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -41,11 +41,37 @@
                     <navigationItem key="navigationItem" title="Zing Notes" id="Rxo-ZD-Vjx"/>
                     <connections>
                         <outlet property="notesTableView" destination="tyG-bu-CzZ" id="Vpw-xe-B9a"/>
+                        <segue destination="ks7-Xs-rgc" kind="push" identifier="pushSegueToNoteDetails" id="lUw-Te-Bie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="508" y="127"/>
+            <point key="canvasLocation" x="478" y="127"/>
+        </scene>
+        <!--Note Details View Controller - Zing Notes (Detail)-->
+        <scene sceneID="RXq-q9-dk8">
+            <objects>
+                <viewController id="ks7-Xs-rgc" customClass="ZNNoteDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wro-S7-gsc"/>
+                        <viewControllerLayoutGuide type="bottom" id="W9l-fF-e79"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jlc-oW-sef">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Zing Notes (Detail)" id="mHG-2T-uQy">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="7YR-8i-dLW">
+                            <connections>
+                                <action selector="navigateBack:" destination="ks7-Xs-rgc" id="Fuj-Kl-osF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fi0-3e-1Ob" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ONp-wW-lUe">
