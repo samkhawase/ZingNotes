@@ -9,12 +9,13 @@
 #import "ZNViewController.h"
 #import "ZNDataService.h"
 #import "ZNNote.h"
+#import "ZNNoteDetailsViewController.h"
 
 @interface ZNViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *notesTableView;
 @property (strong, nonatomic) NSMutableArray* notesOnThisPage;
-
+@property (strong, nonatomic) ZNNote* selectedNote;
 @end
 
 @implementation ZNViewController
@@ -24,6 +25,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.notesOnThisPage = [[[ZNDataService sharedInstance] retriveAllNotes] mutableCopy];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"pushSegueToNoteDetails"]) {
+        ZNNoteDetailsViewController* destinationVC = (ZNNoteDetailsViewController*)segue.destinationViewController;
+        destinationVC.noteForThisPage = self.selectedNote;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +59,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // nothing at this moment
+
+    self.selectedNote = [self.notesOnThisPage objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:@"pushSegueToNoteDetails" sender:self];
 }
 

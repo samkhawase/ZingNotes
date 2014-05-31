@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNNote.h"
 
 @interface ZNNoteDetailsViewController : UIViewController
+
+@property (strong, nonatomic) ZNNote* noteForThisPage;
 
 @end

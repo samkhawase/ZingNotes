@@ -9,10 +9,19 @@
 #import "ZNNoteDetailsViewController.h"
 
 @interface ZNNoteDetailsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *NoteIdLabel;
+@property (weak, nonatomic) IBOutlet UITextField *noteDataTextField;
 
 @end
 
 @implementation ZNNoteDetailsViewController
+
+- (ZNNote *)noteForThisPage{
+    if (nil == _noteForThisPage) {
+        _noteForThisPage = [[ZNNote alloc] init];
+    }
+    return _noteForThisPage;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +37,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [self.NoteIdLabel setText:[self.noteForThisPage.noteId stringValue]];;
+    
+    [self.noteDataTextField setText:self.noteForThisPage.noteText];
+   
+}
+
 - (IBAction)navigateBack:(id)sender {
     NSLog(@"Navigating back to master page");
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)saveNoteAction:(id)sender {
+    
+    // TODO: save notes to data store
 }
 
 - (void)didReceiveMemoryWarning

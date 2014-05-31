@@ -123,6 +123,8 @@
     NSError* error;
     NSArray* contents = [context executeFetchRequest:request error:&error];
     
+    // TODO: Sort the data before sending
+    
     return contents;
 }
 
