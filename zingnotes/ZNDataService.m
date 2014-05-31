@@ -82,20 +82,48 @@
         
         NSManagedObject* aNote;
         aNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
+
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:context];
         
-        [aNote setValue:thisNote.noteId forKeyPath:@"noteId"];
-        [aNote setValue:thisNote.noteText forKeyPath:@"noteText"];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
         
-        NSError* error;
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(noteId = %@)", [noteId stringValue]];
+        [request setPredicate:pred];
         
-        NSLog(@"saved? %hhd",[context save:&error]);
+//        NSManagedObject *matches = nil;
+        
+        NSError *fetchError;
+        NSArray *objects = [context executeFetchRequest:request error:&fetchError];
+        
+        if (objects.count ==0) {
+            [aNote setValue:thisNote.noteId forKeyPath:@"noteId"];
+            [aNote setValue:thisNote.noteText forKeyPath:@"noteText"];
+            
+            NSError* error;
+            
+            NSLog(@"new Entity saved? %hhd",[context save:&error]);
+        } else
+            NSLog(@"duplicates avoided");
+
     }];
     
     return true;
 }
 
 - (NSArray *)retriveAllNotes{
-    return [[NSArray alloc] init];
+    
+    ZNAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    [request setPredicate:nil];
+    
+    NSError* error;
+    NSArray* contents = [context executeFetchRequest:request error:&error];
+    
+    return contents;
 }
 
 - (Boolean)insertANewNote:(ZNNote *)note{
