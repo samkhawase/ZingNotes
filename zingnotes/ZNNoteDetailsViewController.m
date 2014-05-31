@@ -10,7 +10,9 @@
 
 @interface ZNNoteDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *NoteIdLabel;
-@property (weak, nonatomic) IBOutlet UITextField *noteDataTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *noteDataLabel;
+
 
 @end
 
@@ -41,8 +43,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [self.NoteIdLabel setText:[self.noteForThisPage.noteId stringValue]];;
-    
-    [self.noteDataTextField setText:self.noteForThisPage.noteText];
+    [self.noteDataLabel sizeToFit];
+    self.noteDataLabel.textAlignment = NSTextAlignmentLeft;
+    [self.noteDataLabel setText:self.noteForThisPage.noteText];
    
 }
 

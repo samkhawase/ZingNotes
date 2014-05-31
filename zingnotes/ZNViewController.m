@@ -58,7 +58,7 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     self.selectedNote = [self.notesOnThisPage objectAtIndex:indexPath.row];
     
