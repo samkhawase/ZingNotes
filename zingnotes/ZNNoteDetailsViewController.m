@@ -11,8 +11,9 @@
 @interface ZNNoteDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *NoteIdLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *noteDataLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *noteDataLabel;
 
+@property (weak, nonatomic) IBOutlet UITextView *noteDataTextView;
 
 @end
 
@@ -43,10 +44,19 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [self.NoteIdLabel setText:[self.noteForThisPage.noteId stringValue]];;
-    [self.noteDataLabel sizeToFit];
-    self.noteDataLabel.textAlignment = NSTextAlignmentLeft;
-    [self.noteDataLabel setText:self.noteForThisPage.noteText];
+    [self.noteDataTextView sizeToFit];
+    self.noteDataTextView.textAlignment = NSTextAlignmentLeft;
+    [self.noteDataTextView setText:self.noteForThisPage.noteText];
+    self.noteDataTextView.editable = NO;
+    self.noteDataTextView.dataDetectorTypes = UIDataDetectorTypeLink;
+    
+    UITapGestureRecognizer *listener = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [self.noteDataTextView addGestureRecognizer:listener];
    
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)sender{
+    NSLog(@"tapped at %@", [sender class]);
 }
 
 - (IBAction)navigateBack:(id)sender {
@@ -63,6 +73,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

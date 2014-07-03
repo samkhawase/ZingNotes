@@ -52,7 +52,9 @@
     
     ZNNote* thisNote = [self.notesOnThisPage objectAtIndex:indexPath.row];
     
-    [currentCell.textLabel setText:[NSString stringWithFormat:@"Note# %@",[thisNote.noteId stringValue]]];
+//    [currentCell.textLabel setText:[NSString stringWithFormat:@"Note# %@",[thisNote.noteId stringValue]]];
+    [currentCell.textLabel setText:thisNote.noteText];
+    [currentCell.textLabel setFont: [UIFont fontWithName:@"Ariel" size:13]];
     
     return currentCell;
     
