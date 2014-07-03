@@ -78,10 +78,7 @@
         } else
             noteText = [obj valueForKeyPath:@"text"];
         
-        ZNNote* thisNote  = [[ZNNote alloc]initWithNoteId:noteId andNoteText:noteText];
-        
-        NSManagedObject* aNote;
-        aNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
+
 
         NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:context];
         
@@ -97,12 +94,18 @@
         NSArray *objects = [context executeFetchRequest:request error:&fetchError];
         
         if (objects.count ==0) {
-            [aNote setValue:thisNote.noteId forKeyPath:@"noteId"];
-            [aNote setValue:thisNote.noteText forKeyPath:@"noteText"];
+            
+            ZNNote* thisNote  = [[ZNNote alloc]initWithNoteId:noteId andNoteText:noteText];
+            
+            NSManagedObject* aNote;
+            aNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
+            
+            [aNote setValue:thisNote.noteId forKey:@"noteId"];
+            [aNote setValue:thisNote.noteText forKey:@"noteText"];
             
             NSError* error;
             
-            NSLog(@"new Entity saved? %hhd",[context save:&error]);
+            NSLog(@"new Entity saved? %d",[context save:&error]);
         } else
             NSLog(@"duplicates avoided");
 
