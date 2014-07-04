@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) ZNNote* noteForThisPage;
 
+- (IBAction)openClickedLink:(id)sender;
+
 @end

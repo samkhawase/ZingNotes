@@ -53,11 +53,43 @@
     UITapGestureRecognizer *listener = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     [self.noteDataTextView addGestureRecognizer:listener];
    
+    
+//    self buildAgreeTextViewFromString:NSLocalizedString(@"I agree to the #<ts>terms of service# and #<pp>privacy policy#",
+//                                                        @"PLEASE NOTE: please translate \"terms of service\" and \"privacy policy\" as well, and leave the #<ts># and #<pp># around your translations just as in the English version of this message.")];
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)sender{
-    NSLog(@"tapped at %@", [sender class]);
+    if (UIGestureRecognizerStateEnded == sender.state) {
+
+        UITextView* touchedView = (UITextView*) sender.view;
+        
+        NSString *string = touchedView.text;
+
+        NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+
+        NSArray *matches = [linkDetector matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+
+        NSString* matchingString;
+        
+        for (NSTextCheckingResult *match in matches) {
+            
+            if ([match resultType] == NSTextCheckingTypeLink) {
+                matchingString = [match description];
+//                NSLog(@"found URL: %@", matchingString);
+            }
+        }
+        
+        // navigates to the last matching string
+        if (nil != matchingString) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:matchingString]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:matchingString]];
+            } else {
+                NSLog(@"cant open URL %@", [matchingString class]);
+            }
+        }
+    }
 }
+
 
 - (IBAction)navigateBack:(id)sender {
     NSLog(@"Navigating back to master page");
